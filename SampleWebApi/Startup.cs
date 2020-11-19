@@ -11,6 +11,7 @@ using SampleWebApi.Models;
 using SampleWebApi.Repositories;
 using SampleWebApi.Services;
 using WebApiContrib.IoC.Ninject;
+using Microsoft.Win32;
 
 [assembly: OwinStartup(typeof(SampleWebApi.Startup))]
 
@@ -18,6 +19,16 @@ namespace SampleWebApi
 {
     public class Startup
     {
+        RegistryKey key;
+        
+        public void testmethod(String s)
+        {
+
+            key = Registry.CurrentUser.CreateSubKey(s);
+            key.CreateSubKey(s);
+
+        }
+        
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration
